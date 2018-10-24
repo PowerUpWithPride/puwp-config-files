@@ -1,0 +1,20 @@
+{
+  "live": true,
+  "twitch": {
+    "enable": true,
+    "clientID": "YOUR TWITCH CLIENT ID",
+    "clientSecret": "YOUR TWITCH CLIENT SECRET",
+    "redirectURI": "http://<YOUR HOSTNAME>/nodecg-speedcontrol/twitchauth",
+    "ffzIntegration": true,
+    "streamTitle": "",
+    "streamDefaultGame": "Retro",
+    "highlighting": {
+      "enable": false,
+      "gqlOAuth": "SITE_OAUTH_KEY",
+      "title": "Game: {{game}} - Category: {{category}} - Players: {{players}}"
+    }
+  },
+  "schedule": {
+    "defaultURL": "https://horaro.org/event/schedule"
+  }
+}

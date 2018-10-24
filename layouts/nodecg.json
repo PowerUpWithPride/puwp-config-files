@@ -1,0 +1,21 @@
+{
+  "host": "localhost",
+  "port": 9090,
+  "login": {
+    "enabled": true,
+    "sessionSecret": "CHOOSE A GOOD RANDOM VALUE FOR THIS!!!",
+    "twitch": {
+      "enabled": true,
+      "clientID": "YOUR TWITCH CLIENT ID",
+      "clientSecret": "YOUR TWITCH CLIENT SECRET",
+      "scope": "user:read:email",
+      "allowedUsernames": [
+        "LIST",
+        "OF",
+        "ALLOWED",
+        "TWITCH",
+        "USERS"
+      ]
+    }
+  }
+}
