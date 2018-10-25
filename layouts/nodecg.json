@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 9090,
-  "baseURL": "https://layout.powerupwithpride.org",
+  "baseURL": "layout.powerupwithpride.org",
   "login": {
     "enabled": true,
     "sessionSecret": "CHOOSE A GOOD RANDOM VALUE FOR THIS!!!",
