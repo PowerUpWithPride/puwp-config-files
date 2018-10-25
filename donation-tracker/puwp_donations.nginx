@@ -1,0 +1,38 @@
+server {
+    if ($host = tracker.powerupwithpride.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name tracker.powerupwithpride.org;
+
+
+}
+
+server {
+    listen 443 ssl http2;
+    server_name tracker.powerupwithpride.org;
+
+    ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+    location = /favicon.ico {
+        return 204;
+        access_log off;
+        log_not_found off;
+    }
+
+    location /static {
+        # Put your path to Django collected statis files here.
+        alias /home/puwp/puwp_donations/static;
+    }
+
+    location / {
+        # Use same path for Unix socket from the uwsgi .ini file.
+        include uwsgi_params;
+        uwsgi_pass unix:/run/uwsgi/puwp_donations.sock;
+    }
+
+    ssl_certificate /etc/letsencrypt/live/tracker.powerupwithpride.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tracker.powerupwithpride.org/privkey.pem; # managed by Certbot
+}
