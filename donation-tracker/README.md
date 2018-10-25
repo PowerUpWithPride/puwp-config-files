@@ -7,4 +7,6 @@ This is a basic config file for the donation tracker, which is a Django app.  Su
 This is the `uwsgi` emperor config file when launching the main process.  There's nothing sensitive about this, but you can substitute your own paths as needed.
 
 ### puwp_donations.nginx
-Corresponding `nginx` config file that connects the hostname to the `uwsgi` process via a Unix socket.  There is an HTTP redirect to the HTTPS site using LetsEncrypt via the `certbot` tool.  Remove these lines if setting up your own SSL certificate and run the `certbot` tool yourself.
+Corresponding `nginx` config file that connects the hostname to the `uwsgi` process via a Unix socket.
+
+You should add an HTTP redirect to the HTTPS site using LetsEncrypt via the `certbot` tool.  HTTP section is blank because this is intended to have the `certbot` tool perform the configuration automatically.  Run this tool after putting this config file in place!
