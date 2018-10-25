@@ -1,2 +1,10 @@
 # Donation Tracker Config
+
+### local.py
 This is a basic config file for the donation tracker, which is a Django app.  Substitute your own site name, database credentials, etc.
+
+### puwp_donations.ini
+This is the `uwsgi` emperor config file when launching the main process.  There's nothing sensitive about this, but you can substitute your own paths as needed.
+
+### puwp_donations.nginx
+Corresponding `nginx` config file that connects the hostname to the `uwsgi` process via a Unix socket.  There is an HTTP redirect to the HTTPS site using LetsEncrypt via the `certbot` tool.  Remove these lines if setting up your own SSL certificate and run the `certbot` tool yourself.
