@@ -1,13 +1,6 @@
 server {
-    if ($host = tracker.powerupwithpride.org) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-
     listen 80;
     server_name tracker.powerupwithpride.org;
-
-
 }
 
 server {
@@ -32,7 +25,4 @@ server {
         include uwsgi_params;
         uwsgi_pass unix:/run/uwsgi/puwp_donations.sock;
     }
-
-    ssl_certificate /etc/letsencrypt/live/tracker.powerupwithpride.org/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/tracker.powerupwithpride.org/privkey.pem; # managed by Certbot
 }
