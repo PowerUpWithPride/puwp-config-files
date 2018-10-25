@@ -15,6 +15,6 @@
     }
   },
   "schedule": {
-    "defaultURL": "https://horaro.org/event/schedule"
+    "defaultURL": "https://horaro.org/<YOUR EVENT>/schedule"
   }
 }
