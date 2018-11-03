@@ -1,0 +1,24 @@
+rtmp {
+    server {
+        listen 1935;
+        chunk_size 4096;
+
+        # Runners stream to this path with any stream key you want.
+        # ex. URL: rtmp://yourserver.com/runners; stream key: our-marathon-1
+        application runners {
+            live on;
+            record off;
+        }
+
+        # Restreamer streams to this path with a secret stream key you generate.
+        # ex. URL: rtmp://yourserver.com/live; stream key: SECRET
+        application live {
+            live on;
+            record off;
+            on_publish http://localhost:8080/auth;
+            # Add your Twitch stream key here to forward the live stream to Twitch!
+            # Current hostname is the New York ingest server.  Pick a better one for your location if desired.
+            push rtmp://live-jfk.twitch.tv/app/YOUR_TWITCH_STREAM_KEY;
+        }
+    }
+}
