@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    server_name rtmp.powerupwithpride.org;
+
+    # Don't allow accessing anything other than the FLV path here.
+    location / {
+        return 400;
+    }
+
+    # FLV playing for RTMP streams.
+    location /flv_runners {
+        flv_live on;
+        chunked_transfer_encoding on;
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+    }
+}
