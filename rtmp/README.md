@@ -1,15 +1,15 @@
 # RTMP Server Setup
 
-##Installing nginx web server + nginx-http-flv-module
+## Installing nginx web server + nginx-http-flv-module
 These instructions are for Debian/Ubuntu distributions.  We want to compile from the PPA source files in order to keep the same configuration as the default Ubuntu packages for convenience.  If you're running a different system, you can find more general compiling-from-source instructions at the [nginx-http-flv-module GitHub page](https://github.com/winshining/nginx-http-flv-module).
 
-###1. Add PPA for latest nginx version
+### 1. Add PPA for latest nginx version
 ```bash
 sudo add-apt-repository ppa:nginx/development
 sudo apt-get update
 ```
 
-###2. Build nginx from source
+### 2. Build nginx from source
 First we need to install the build dependencies for `nginx`.
 
 ```bash
@@ -23,7 +23,7 @@ This will place the nginx source files in `/usr/src`.  If you're installing for 
 sudo apt-get build-dep nginx
 ```
 
-###3. Download nginx-http-flv-module and include in the config.
+### 3. Download nginx-http-flv-module and include in the config.
 The current release at time of this writing is `v1.2.5`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
 
 ```bash
@@ -49,7 +49,7 @@ Now build the packages, and go grab a meal while you wait...
 sudo dpkg-buildpackage -b
 ```
 
-###4. Install built packages and hold for future updates
+### 4. Install built packages and hold for future updates
 
 Once it's done building, you can install the packages you just built.  Change the filenames accordingly if you built a different version of nginx.
 
@@ -71,9 +71,9 @@ At this point, you may want to place a hold on the `nginx-full` package so it do
 sudo apt-mark hold nginx-full
 ```
 
-##Config Files
+## Config Files
 
-###rtmp_ingest.nginx
+### rtmp_ingest.nginx
 The `nginx` config file that contains the RTMP configuration settings.  This contains two apps: one for the runners to stream to that doesn't get forwarded anywhere, and one for the restreamer to stream to which gets forwarded to your Twitch stream.  The latter has an `on_publish` trigger to provide some basic authentication for the restreamer based on the stream key.
 
 ### rtmp_auth.nginx
