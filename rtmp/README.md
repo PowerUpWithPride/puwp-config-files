@@ -71,6 +71,8 @@ At this point, you may want to place a hold on the `nginx-full` package so it do
 sudo apt-mark hold nginx-full
 ```
 
+Going forward, if there's a new version of nginx you want to upgrade to, you'll need to repeat this process and compile the new version with the RTMP module.
+
 ## Config Files
 
 ### rtmp_ingest.nginx
