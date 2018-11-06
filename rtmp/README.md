@@ -80,3 +80,6 @@ The `nginx` config file that contains the RTMP configuration settings.  This con
 
 ### rtmp_auth.nginx
 The `nginx` config file that contains the HTTP settings for the authentication of restreamers.  This should be the path of the `on_publish` trigger in the previous file, and it validates the stream key matches the one you choose.  This is a very simple authentication method, but it's quick and easy and it works.
+
+### flv_runners.nginx
+The `nginx` config file that contains the HTTP settings for making the FLV encoded stream available via the web server.  This path will be used on the actual webpages for viewing the streams.
