@@ -17,7 +17,8 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://localhost:9090;
+        # Use IP address instead of localhost to avoid IPv6 errors in the logs.
+        proxy_pass http://127.0.0.1:9090;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
