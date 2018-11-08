@@ -3,13 +3,12 @@ server {
     listen 8080;
     server_name localhost;
 
-    location /auth {
-        # Validates the stream key the restreamer is using.  This is provided to this path in the "on_publish" event on
-        # the RTMP part, and the stream key field is passed as "name".
-        # NOTE: THIS IS NOT YOUR TWITCH STREAM KEY!  Use a different random key you generate yourself!
-        if ($arg_name != "YOUR_SECRET_STREAM_KEY") {
-            return 403;
-        }
-        return 200;
+    # Set your root folder to where you placed the "auth_live.php" file.
+    root /var/www/html;
+
+    # Simple config to run PHP scripts using the standard fastcgi module with Ubuntu's fastcgi snippet.
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
     }
 }
