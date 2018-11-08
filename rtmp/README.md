@@ -73,13 +73,31 @@ sudo apt-mark hold nginx-full
 
 Going forward, if there's a new version of nginx you want to upgrade to, you'll need to repeat this process and compile the new version with the RTMP module.
 
+### 5. Install PHP fast process manager for authentication script
+
+If you're using the same method as us for restreamer stream key validation (i.e. a simple PHP script), you should install the PHP fast process manager package in Ubuntu.
+
+```bash
+sudo apt-get install php-fpm
+```
+
 ## Config Files
 
 ### rtmp_ingest.nginx
-The `nginx` config file that contains the RTMP configuration settings.  This contains two apps: one for the runners to stream to that doesn't get forwarded anywhere, and one for the restreamer to stream to which gets forwarded to your Twitch stream.  The latter has an `on_publish` trigger to provide some basic authentication for the restreamer based on the stream key.
+The `nginx` config file that contains the RTMP configuration settings.  This contains three apps:
+
+- `runners` is for the runners to stream to with whatever stream keys you choose for your event.  It doesn't get forwarded anywhere.  The restreamers will pull game feeds from this on the viewing page.
+
+- `live` is for the restreamer to stream to which gets forwarded to your Twitch stream.  This has an `on_publish` trigger to provide some basic authentication for the restreamer based on the stream key.  This also gets forwarded to the `restream` app described below on the localhost.
+
+- `restream` is only allowed to be published to on the localhost.  The `live` stream above is forwarded here on the localhost.  The commentator page where they view the restream pulls from this app in order to hide the stream key that the restreamer is actually using.
 
 ### rtmp_auth.nginx
-The `nginx` config file that contains the HTTP settings for the authentication of restreamers.  This should be the path of the `on_publish` trigger in the previous file, and it validates the stream key matches the one you choose.  This is a very simple authentication method, but it's quick and easy and it works.
+The `nginx` config file that contains the HTTP settings for the authentication of restreamers on the live path.  This contains a simple PHP setup to execute any PHP files within the root path specified.  The only file present in this path should be the `auth_live.php` file below, so place it there.
 
 ### flv_runners.nginx
 The `nginx` config file that contains the HTTP settings for making the FLV encoded stream available via the web server.  This path will be used on the actual webpages for viewing the streams.
+
+### auth_live.php
+
+A simple PHP script that receives the `on_publish` trigger from the RTMP live path and checks if the stream key matches the secret one chosen.  This is a very simple authentication method, but it's quick and easy.
