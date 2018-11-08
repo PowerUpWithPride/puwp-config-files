@@ -101,3 +101,11 @@ The `nginx` config file that contains the HTTP settings for making the FLV encod
 ### auth_live.php
 
 A simple PHP script that receives the `on_publish` trigger from the RTMP live path and checks if the stream key matches the secret one chosen.  This is a very simple authentication method, but it's quick and easy.
+
+### runner_viewer.nginx
+
+The `nginx` config file for the game feed viewing site that restreamers will use.  This is a very basic static webpage config.
+
+### restream_viewer.nginx
+
+The `nginx` config file for the restream viewing site that commentators will use to watch the stream.

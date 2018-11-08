@@ -1,0 +1,6 @@
+server {
+    # Serves static pages for restreamers to pull the runner game feeds.
+    listen 80;
+    server_name runners.powerupwithpride.org;
+    root /var/www/html/runner-viewer;
+}

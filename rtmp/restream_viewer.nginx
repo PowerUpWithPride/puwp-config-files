@@ -1,0 +1,6 @@
+server {
+    # Serves static page for commentators to view the restream.
+    listen 80;
+    server_name restream.powerupwithpride.org;
+    root /var/www/html/restream-viewer;
+}
