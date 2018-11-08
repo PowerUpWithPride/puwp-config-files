@@ -15,24 +15,32 @@ rtmp {
         application live {
             live on;
             record off;
-            on_publish http://localhost:8080/auth;
 
             # Don't allow anyone to play from this path directly, as it exposes the stream key.
+            # All this app does is forward to other places.
             deny play all;
 
-            # Add your Twitch stream key here to forward the live stream to Twitch!
+            # This callback fires on any publish attempt on this path, i.e. the restreamer startin the stream.
+            # If the stream key is not correct, the connection will be denied.
+            on_publish http://localhost:8080/auth_live.php;
+
+            # Add your Twitch stream key here to forward the live stream to Twitch.
             # Current hostname is the New York ingest server.  Pick a better one for your location if desired.
             push rtmp://live-jfk.twitch.tv/app/YOUR_TWITCH_STREAM_KEY;
 
             # Push the restream to the restream app with a fixed stream key so the commentators can watch it from a
             # fixed path that doesn't accidentally reveal the stream key the restreamer is using.
-            push rtmp://localhost/restream/live;
+            push rtmp://127.0.0.1/restream/live;
         }
 
         # Commentators can consume from this path on the restream viewing webpage.
         application restream {
             live on;
             record off;
+
+            # Only allow publishing to this stream from the localhost for the "live" app above.
+            allow publish 127.0.0.1;
+            deny publish all;
         }
     }
 }
