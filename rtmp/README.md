@@ -38,10 +38,10 @@ Now we need to edit the rules file for nginx to include this directory as a modu
 
 ```bash
 cd /usr/src/nginx-1.15.5
-sudo vi debian/rules
+sudo vim debian/rules
 ```
 
-Find the `full_configure_flags` configuration string and add `--add-module=/usr/src/nginx-http-flv-module-1.2.5 \ ` to the list.
+Find the `full_configure_flags` configuration string and add `--add-module=/usr/src/nginx-http-flv-module-1.2.5 \` to the list.
 
 Now build the packages, and go grab a meal while you wait...
 
