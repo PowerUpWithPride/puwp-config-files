@@ -9,7 +9,7 @@ sudo add-apt-repository ppa:nginx/development
 sudo apt-get update
 ```
 
-### 2. Build nginx from source
+### 2. Get nginx source and install build dependencies
 First we need to install the build dependencies for `nginx`.
 
 ```bash
@@ -23,7 +23,7 @@ This will place the nginx source files in `/usr/src`.  If you're installing for 
 sudo apt-get build-dep nginx
 ```
 
-### 3. Download nginx-http-flv-module and include in the config.
+### 3. Download nginx-http-flv-module and include in the build
 The current release at time of this writing is `v1.2.5`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
 
 ```bash
@@ -73,7 +73,7 @@ sudo apt-mark hold nginx-full
 
 Going forward, if there's a new version of nginx you want to upgrade to, you'll need to repeat this process and compile the new version with the RTMP module.
 
-### 5. Install PHP fast process manager for authentication script
+### 5. Install PHP fast process manager for authentication script (optional)
 
 If you're using the same method as us for restreamer stream key validation (i.e. a simple PHP script), you should install the PHP fast process manager package in Ubuntu.
 
