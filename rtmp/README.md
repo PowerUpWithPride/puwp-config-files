@@ -104,8 +104,8 @@ A simple PHP script that receives the `on_publish` trigger from the RTMP live pa
 
 ### runner_viewer.nginx
 
-The `nginx` config file for the game feed viewing site that restreamers will use.  This is a very basic static webpage config.
+The `nginx` config file for the game feed viewing site that restreamers will use.  This is a very basic static webpage config.  See https://github.com/PowerUpWithPride/rtmp-viewer for the actual webpages.
 
 ### restream_viewer.nginx
 
-The `nginx` config file for the restream viewing site that commentators will use to watch the stream.
+The `nginx` config file for the restream viewing site that commentators will use to watch the stream.  Actual page is located in the same repository mentioned above.
