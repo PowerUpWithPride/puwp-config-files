@@ -15,6 +15,7 @@
     }
   },
   "schedule": {
+    "ignoreGamesWhileImporting": ["Pre-show", "Setup", "Finale"],
     "defaultURL": "https://horaro.org/<YOUR EVENT>/schedule"
   }
 }
