@@ -55,7 +55,7 @@ Once it's done building, you can install the packages you just built.  Change th
 
 ```bash
 cd ..
-sudo dpkg --install nginx-common_1.15.9-0+cosmic1_all.deb nginx-full_1.15.9-0+cosmic1_amd64.deb
+sudo dpkg --install nginx-common_1.15.9*.deb nginx-full_1.15.9*.deb
 ```
 
 After installing, you can check if it's running.
