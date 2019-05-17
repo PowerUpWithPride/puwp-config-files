@@ -17,6 +17,7 @@
   "schedule": {
     "ignoreGamesWhileImporting": ["Pre-show", "Setup", "Finale"],
     "customData": [
+      {"key": "commentators", "name": "Commentators"},
       {"key": "layout", "name": "Layout"}
     ],
     "defaultURL": "https://horaro.org/<YOUR EVENT>/schedule"

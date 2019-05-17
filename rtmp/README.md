@@ -5,7 +5,7 @@ These instructions are for Debian/Ubuntu distributions.  We want to compile from
 
 ### 1. Add PPA for latest nginx version
 ```bash
-sudo add-apt-repository ppa:nginx/development
+sudo add-apt-repository ppa:nginx/mainline
 sudo apt-get update
 ```
 
@@ -24,24 +24,24 @@ sudo apt-get build-dep nginx
 ```
 
 ### 3. Download nginx-http-flv-module and include in the build
-The current release at time of this writing is `v1.2.5`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
+The current release at time of this writing is `v1.2.6`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
 
 ```bash
 cd /usr/src
-sudo wget https://github.com/winshining/nginx-http-flv-module/archive/v1.2.5.tar.gz
-sudo tar -xvf v1.2.5.tar.gz
+sudo wget https://github.com/winshining/nginx-http-flv-module/archive/v1.2.6.tar.gz
+sudo tar -xvf v1.2.6.tar.gz
 ```
 
-You should now have a folder `/usr/src/nginx-http-flv-module-1.2.5`.  Change the directory name accordingly if you downloaded a different version or cloned the repo.
+You should now have a folder `/usr/src/nginx-http-flv-module-1.2.6`.  Change the directory name accordingly if you downloaded a different version or cloned the repo.
 
 Now we need to edit the rules file for nginx to include this directory as a module during compilation.
 
 ```bash
-cd /usr/src/nginx-1.15.5
+cd /usr/src/nginx-1.15.9
 sudo vim debian/rules
 ```
 
-Find the `full_configure_flags` configuration string and add `--add-module=/usr/src/nginx-http-flv-module-1.2.5 \` to the list.
+Find the `full_configure_flags` configuration string and add `--add-module=/usr/src/nginx-http-flv-module-1.2.6 \` to the list.
 
 Now build the packages, and go grab a meal while you wait...
 
@@ -55,7 +55,7 @@ Once it's done building, you can install the packages you just built.  Change th
 
 ```bash
 cd ..
-sudo dpkg --install nginx-common_1.15.5-0+cosmic1_all.deb nginx-full_1.15.5-0+cosmic1_amd64.deb
+sudo dpkg --install nginx-common_1.15.9*.deb nginx-full_1.15.9*.deb
 ```
 
 After installing, you can check if it's running.
