@@ -6,8 +6,10 @@ Config file for NodeCG itself.  We're using the Twitch authentication feature of
 ### nodecg-speedcontrol.json
 Config file for the Speedcontrol bundle.  We're using the Twitch dashboard and Horaro schedule import integrations.  Substitute your own values for Twitch ID and secret key, and put your own Horaro event schedule URL if using this.
 
-### nodecg-puwp.json
-Config file for the extra PUWP bundle.  This bundle is intended to be used in conjunction with Speedcontrol, but does not provide any actual graphics for your layouts.  You need to make these yourself in a separate bundle of your own.  Substitute your own values for the donation tracker event ID and any extra layouts you need.
+### speedcontrol-layoutswitch.json
+### speedcontrol-gdqtracker.json
+
+Config files for the extra PUWP bundles.  These bundles are intended to be used in conjunction with Speedcontrol, but does not provide any actual graphics for your layouts.  You need to make these yourself in a separate bundle of your own.  Substitute your own values for the donation tracker event ID and any extra layouts you need.
 
 ### layout_controller.nginx
 The `nginx` config file that connects the hostname to the `nodejs` process running on the default port on localhost.  Note that this must be different than the submissions app.

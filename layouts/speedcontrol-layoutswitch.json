@@ -1,0 +1,5 @@
+{
+  "extraLayouts": [
+    {"name": "<YOUR LAYOUT NAME>", "code": "<layout_code>"}
+  ]
+}
