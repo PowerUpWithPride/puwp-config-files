@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    server_name submissions-test.powerupwithpride.org;
+
+    location = /favicon.ico {
+        return 204;
+        access_log off;
+        log_not_found off;
+    }
+
+    location /static {
+        # Put your path to Django collected statis files here.
+        alias /home/puwp/marathon_manager/static;
+    }
+
+    location / {
+        # Use same path for Unix socket from the uwsgi .ini file.
+        include uwsgi_params;
+        uwsgi_pass unix:/run/uwsgi/marathon_manager.sock;
+    }
+}
