@@ -1,5 +1,4 @@
 {
-  "live": true,
   "twitch": {
     "enable": true,
     "clientID": "YOUR TWITCH CLIENT ID",
@@ -7,15 +6,11 @@
     "redirectURI": "http://<YOUR HOSTNAME>/nodecg-speedcontrol/twitchauth",
     "ffzIntegration": true,
     "streamTitle": "",
-    "streamDefaultGame": "Retro",
-    "highlighting": {
-      "enable": false,
-      "gqlOAuth": "SITE_OAUTH_KEY",
-      "title": "Game: {{game}} - Category: {{category}} - Players: {{players}}"
-    }
+    "streamDefaultGame": "Retro"
   },
   "schedule": {
     "ignoreGamesWhileImporting": ["Pre-show", "Setup", "Finale"],
+    "disableSpeedrunComLookup": true,
     "customData": [
       {"key": "commentators", "name": "Commentators"},
       {"key": "layout", "name": "Layout"}
