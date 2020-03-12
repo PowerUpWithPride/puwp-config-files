@@ -1,13 +1,6 @@
 server {
     listen 80;
     server_name layout.powerupwithpride.org;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name layout.powerupwithpride.org;
-
-    ssl_dhparam /etc/ssl/certs/dhparam.pem;
 
     location = /favicon.ico {
         return 204;
