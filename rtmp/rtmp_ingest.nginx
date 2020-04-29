@@ -5,10 +5,13 @@ rtmp {
         listen 1935;
         chunk_size 4096;
 
+        access_log /var/log/nginx/access.log;
+
         # Runners stream to this path with any stream key you want.
         # ex. URL: rtmp://yourserver.com/runners; stream key: our-marathon-1
         application runners {
             live on;
+            meta off;
             record off;
         }
 
