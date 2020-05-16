@@ -16,5 +16,19 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_cache_bypass $http_upgrade;
+        proxy_max_temp_file_size 0;
+        proxy_redirect off;
+        proxy_read_timeout 240s;
+    }
+
+    # Use proxy for Icecast JSON stats feed to put it behind SSL connection for intermission page.
+    location /music-stats {
+        include proxy_params;
+        # Use IP address instead of localhost to avoid IPv6 errors in the logs.
+        proxy_pass http://127.0.0.1:42069/status-json.xsl;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_cache_bypass $http_upgrade;
     }
 }
