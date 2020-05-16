@@ -11,6 +11,7 @@ server {
     location /static {
         # Put your path to Django collected statis files here.
         alias /home/puwp/puwp_donations/static;
+        add_header Cache-Control 'no-cache';
     }
 
     location / {
