@@ -7,8 +7,9 @@ server {
     root /var/www/html;
 
     # Simple config to run PHP scripts using the standard fastcgi module with Ubuntu's fastcgi snippet.
+    # You may need to change the PHP socket path name below depending on your system/version.
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
     }
 }
