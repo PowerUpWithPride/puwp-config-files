@@ -10,6 +10,6 @@ server {
     # You may need to change the PHP socket path name below depending on your system/version.
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php-fpm.sock;
     }
 }
