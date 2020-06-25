@@ -1,16 +1,10 @@
 # RTMP Server Setup
 
 ## Installing nginx web server + nginx-http-flv-module
-These instructions are for Debian/Ubuntu distributions.  We want to compile from the PPA source files in order to keep the same configuration as the default Ubuntu packages for convenience.  If you're running a different system, you can find more general compiling-from-source instructions at the [nginx-http-flv-module GitHub page](https://github.com/winshining/nginx-http-flv-module).
+These instructions are for Debian/Ubuntu distributions.  We want to compile the RTMP FLV module as a dynamic module so we can use the default Ubuntu nginx packages for convenience and load only the compiled module dynamically, instead of compiling entirely from source.  This makes managing updates easier.  If you're running a different system, you can find more general compiling-from-source instructions at the [nginx-http-flv-module GitHub page](https://github.com/winshining/nginx-http-flv-module).
 
-### 1. Add PPA for latest nginx version
-```bash
-sudo add-apt-repository ppa:nginx/mainline
-sudo apt-get update
-```
-
-### 2. Install nginx, get source and install build dependencies
-First install nginx itself:
+### 1. Install nginx, get source and install build dependencies
+First install the latest nginx itself based on your distro.  As of Ubuntu 20.04, there is no longer a separate PPA for nginx.  The main Ubuntu package repository should have the latest stable version, so all you need is:
 
 ```bash
 sudo apt-get install nginx
@@ -26,6 +20,7 @@ sudo systemctl start nginx  # If it's not running
 Next we need to get the source for `nginx`.
 
 ```bash
+cd /usr/src
 sudo apt-get install dpkg-dev
 sudo apt-get source nginx
 ```
@@ -36,7 +31,7 @@ This will place the nginx source files in `/usr/src`.  If you're installing for 
 sudo apt-get build-dep nginx
 ```
 
-### 3. Download nginx-http-flv-module and build as a dynamic module
+### 2. Download nginx-http-flv-module and build as a dynamic module
 The current release at time of this writing is `v1.2.7`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
 
 ```bash
@@ -47,10 +42,10 @@ sudo tar -xvf v1.2.7.tar.gz
 
 You should now have a folder `/usr/src/nginx-http-flv-module-1.2.7`.  Change the directory name accordingly if you downloaded a different version or cloned the repo.
 
-Now we need to edit the rules file for nginx to include this directory as a dynamic module.
+Now we need to edit the rules file for nginx to include this directory as a dynamic module.  Change the nginx directory name if you have a different version accordingly:
 
 ```bash
-cd /usr/src/nginx-1.17.3
+cd /usr/src/nginx-1.17.10
 ./configure --with-compat --add-dynamic-module=../nginx-http-flv-module-1.2.7
 ```
 
@@ -60,7 +55,7 @@ Now build the dynamic modules, which shouldn't take too long...
 make modules
 ```
 
-### 4. Install built module
+### 3. Install built module
 
 Finally we need to copy the resulting `.so` shared object file to the nginx modules directory.  On an Ubuntu system, this is located at `/usr/lib/nginx/modules/` but change your path according to your system.
 
@@ -68,7 +63,7 @@ Finally we need to copy the resulting `.so` shared object file to the nginx modu
 sudo cp objs/ngx_http_flv_live_module.so /usr/lib/nginx/modules/
 ```
 
-### 5. Install PHP fast process manager for authentication script (optional)
+### 4. Install PHP fast process manager for authentication script (optional)
 
 If you're using the same method as us for restreamer stream key validation (i.e. a simple PHP script), you should install the PHP fast process manager package in Ubuntu.
 
