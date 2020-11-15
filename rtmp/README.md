@@ -32,21 +32,21 @@ sudo apt-get build-dep nginx
 ```
 
 ### 2. Download nginx-http-flv-module and build as a dynamic module
-The current release at time of this writing is `v1.2.7`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
+The current release at time of this writing is `v1.2.8`.  You can clone the repository if you want the absolute latest code, but it's probably safer to use the current release. 
 
 ```bash
 cd /usr/src
-sudo wget https://github.com/winshining/nginx-http-flv-module/archive/v1.2.7.tar.gz
-sudo tar -xvf v1.2.7.tar.gz
+sudo wget https://github.com/winshining/nginx-http-flv-module/archive/v1.2.8.tar.gz
+sudo tar -xvf v1.2.8.tar.gz
 ```
 
-You should now have a folder `/usr/src/nginx-http-flv-module-1.2.7`.  Change the directory name accordingly if you downloaded a different version or cloned the repo.
+You should now have a folder `/usr/src/nginx-http-flv-module-1.2.8`.  Change the directory name accordingly if you downloaded a different version or cloned the repo.
 
 Now we need to edit the rules file for nginx to include this directory as a dynamic module.  Change the nginx directory name if you have a different version accordingly:
 
 ```bash
 cd /usr/src/nginx-1.17.10
-./configure --with-compat --add-dynamic-module=../nginx-http-flv-module-1.2.7
+./configure --with-compat --add-dynamic-module=../nginx-http-flv-module-1.2.8
 ```
 
 Now build the dynamic modules, which shouldn't take too long...
